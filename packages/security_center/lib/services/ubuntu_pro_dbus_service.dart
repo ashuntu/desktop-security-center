@@ -63,7 +63,7 @@ class UbuntuProFeature with _$UbuntuProFeature {
     DBusRemoteObject object,
   ) {
     final name = dbusMap['Name']!.asString();
-
+    print(name);
     return UbuntuProFeature(
       object: object,
       path: path,
