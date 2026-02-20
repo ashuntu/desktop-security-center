@@ -20,6 +20,7 @@ enum UbuntuProFeatureType {
   esmApps,
   livepatch,
   usg,
+  unknown,
 }
 
 extension FeatureTypePath on UbuntuProFeatureType {
@@ -71,7 +72,8 @@ class UbuntuProFeature with _$UbuntuProFeature {
       entitled: dbusMap['Entitled']!.asString() == 'yes',
       status: dbusMap['Status']!.asString(),
       type: UbuntuProFeatureType.values
-          .firstWhere((f) => f.name.toKebabCase() == name),
+              .firstWhereOrNull((f) => f.name.toKebabCase() == name) ??
+          UbuntuProFeatureType.unknown,
     );
   }
 
